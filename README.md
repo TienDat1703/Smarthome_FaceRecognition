@@ -149,9 +149,13 @@ Servo motors like the MG996R draw instantaneous stall currents up to 1.5A–2.0A
 
 - **HOG (Histogram of Oriented Gradients)**: Computes local light intensity gradients across $8 \times 8$ pixel cells and $16 \times 16$ blocks. Normalized feature vectors are passed through a Linear SVM to locate face bounding boxes efficiently on ARM CPUs without GPU reliance.
 - **ResNet 128D Embeddings**: Crop regions are transformed into a 128-dimensional vector space using dlib's Deep Residual Network trained with Triplet Loss:
-  $$\mathcal{L}_{triplet} = \max(0, \|f(A) - f(P)\|^2 - \|f(A) - f(N)\|^2 + \alpha)$$
+
+   $$\mathcal{L}_{triplet} = \max(0, \|f(A) - f(P)\|^2 - \|f(A) - f(N)\|^2 + \alpha)$$
+  
 - **Euclidean Metric Matching**:
+  
   $$\text{Distance} = \sqrt{\sum_{i=1}^{128} (V_{\text{realtime}}[i] - V_{\text{database}}[i])^2}$$
+  
   - Default threshold: `0.60` (lenient).
   - Production threshold: `0.45` (strict security enforcement).
 
